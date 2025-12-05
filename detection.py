@@ -90,7 +90,8 @@ class CapsuleDetector:
             List of detection dictionaries
         """
         # YOLOv8 output format: (batch_size, num_classes + 4, num_detections)
-        predictions = outputs[0][0]  # Remove batch dimension
+        # Take only the first batch item since we duplicated the same image
+        predictions = outputs[0][0]  # Remove batch dimension, take first item
         
         # Transpose to (num_detections, num_classes + 4)
         predictions = predictions.T
